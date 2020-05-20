@@ -18,7 +18,7 @@ export const getPosts = () => {
       dispatch({ type: "FOO", payload: res.data });
     } catch (err) {
       console.log("error happened");
-      console.log(err.message);
+      console.log(err);
     }
   };
 };

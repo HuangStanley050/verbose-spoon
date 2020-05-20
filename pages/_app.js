@@ -3,7 +3,8 @@ import React from "react";
 import { Provider } from "react-redux";
 import App from "next/app";
 import withRedux from "next-redux-wrapper";
-import { makeStore } from "../store/setupStore";
+import { wrapper } from "../store/setupStore";
+import { store, makeStore } from "../store/setupStore";
 
 const MyApp = ({ Component, pageProps, store }) => {
   return (
@@ -21,5 +22,5 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     : {};
   return { pageProps };
 };
-
-export default withRedux(makeStore)(MyApp);
+//const makeStore = () => store;
+export default wrapper.withRedux(MyApp);

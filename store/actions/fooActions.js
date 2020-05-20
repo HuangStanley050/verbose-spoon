@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import * as actionTypes from "./actionTypes";
 // export const getPosts = () => (dispatch) =>
 //   axios({
 //     method: "GET",
@@ -15,7 +15,7 @@ export const getPosts = () => {
         url: `https://jsonplaceholder.typicode.com/posts`,
         headers: [],
       });
-      dispatch({ type: "FOO", payload: res.data });
+      dispatch({ type: actionTypes.FOO, payload: res.data });
     } catch (err) {
       console.log("error happened");
       console.log(err);

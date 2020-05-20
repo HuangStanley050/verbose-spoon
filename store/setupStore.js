@@ -5,8 +5,12 @@ import thunk from "redux-thunk";
 import rootReducer from "./reducers/index";
 import fooReducer from "./reducers/fooReducer";
 
-export const makeStore = () => {
-  return createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+export const makeStore = (initiatlState, options) => {
+  return createStore(
+    rootReducer,
+    initiatlState,
+    composeWithDevTools(applyMiddleware(thunk))
+  );
 };
 
 export const store = createStore(

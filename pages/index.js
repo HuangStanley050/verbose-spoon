@@ -11,6 +11,7 @@ const Index = (props) => {
         A proof of concept app, demonstrating the authentication of Next.js
         application using JWT.
       </p>
+      <p>this is from redux store: ${JSON.stringify(props.foo)}</p>
     </div>
   );
 };

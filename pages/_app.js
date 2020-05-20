@@ -2,16 +2,12 @@ import React from "react";
 //import { createStore } from 'redux';
 import { Provider } from "react-redux";
 import App from "next/app";
-import withRedux from "next-redux-wrapper";
+//import withRedux from "next-redux-wrapper";
 import { wrapper } from "../store/setupStore";
-import { store, makeStore } from "../store/setupStore";
+//import { store, makeStore } from "../store/setupStore";
 
 const MyApp = ({ Component, pageProps, store }) => {
-  return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
-  );
+  return <Component {...pageProps} />;
 };
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {

@@ -1,21 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { getPosts } from "../store/actions/fooActions";
 
 const Index = (props) => {
-  console.log(props);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.getPosts();
+  };
   return (
     <div>
-      <h2 className="title is-2">Authentication with Next.js and JWT</h2>
-      <h3>hi there</h3>
-      <p>
-        A proof of concept app, demonstrating the authentication of Next.js
-        application using JWT.
-      </p>
-      <p>this is from redux store: ${JSON.stringify(props.foo)}</p>
+      <div>Prop from Redux {JSON.stringify(props)}</div>
+      <button onClick={handleSubmit}>Load</button>
+      <div>Prop from getInitialProps {props.custom}</div>
     </div>
   );
+};
+Index.getInitialProps = async ({ store, isServer, pathname, query }) => {
+  let result = await store.dispatch(getPosts());
+  console.log(result);
+  return { custom: "custom" };
 };
 const mapState = (state) => ({
   foo: state.foo,
 });
-export default connect(mapState)(Index);
+
+export default connect(mapState, { getPosts })(Index);

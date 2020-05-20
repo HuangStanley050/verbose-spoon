@@ -7,7 +7,7 @@ import rootReducer from "./reducers/index";
 const makeStore = (context) => {
   return createStore(
     rootReducer,
-    initiatlState,
+
     composeWithDevTools(applyMiddleware(thunk))
   );
 };

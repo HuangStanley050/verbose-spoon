@@ -16,8 +16,8 @@ const Index = (props) => {
   );
 };
 Index.getInitialProps = async ({ store, isServer, pathname, query }) => {
-  let result = await store.dispatch(getPosts());
-  console.log(result);
+  await store.dispatch(getPosts());
+
   return { custom: "custom" };
 };
 const mapState = (state) => ({

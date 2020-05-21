@@ -15,6 +15,7 @@ export const getPosts = () => {
         url: `https://jsonplaceholder.typicode.com/posts`,
         headers: [],
       });
+      console.log(res.data);
       dispatch({ type: actionTypes.FOO, payload: res.data });
     } catch (err) {
       console.log("error happened");

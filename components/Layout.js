@@ -3,9 +3,6 @@ import Head from "next/head";
 
 const Layout = ({ children, title }) => (
   <div>
-    <Head>
-      <title>{title}</title>
-    </Head>
     <div>
       <ul>
         <li>

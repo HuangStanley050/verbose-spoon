@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Layout from "../components/Layout";
+import { authenticate } from "../store/actions/authActions";
 
-const Signin = () => {
-  const [email, setEmail] = useState("ryan@gmail.com");
-  const [password, setPassword] = useState("rrrrrr9");
+const Signin = ({ login }) => {
+  const [email, setEmail] = useState("test@test.com");
+  const [password, setPassword] = useState("Test@1234");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("login with ", { email, password });
+    login({ email, password });
+    //console.log("login with ", { email, password });
   };
 
   return (
@@ -41,5 +43,8 @@ const Signin = () => {
     </Layout>
   );
 };
-
-export default Signin;
+Signin.getInitialProps = (ctx) => {};
+const mapDispatch = (dispatch) => ({
+  login: ({ email, password }) => dispatch(authenticate({ email, password })),
+});
+export default connect(null, mapDispatch)(Signin);

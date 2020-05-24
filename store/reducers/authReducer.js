@@ -7,6 +7,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTHENTICATE:
       return { ...state, token: action.payload };
+    case actionTypes.DEAUTHENTICATE:
+      return { token: null };
     default:
       return state;
   }

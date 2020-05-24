@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import { setCookie } from "../../util/cookieHelper";
+import { setCookie, removeCookie } from "../../util/cookieHelper";
 import Router from "next/router";
 
 import axios from "axios";
@@ -11,5 +11,21 @@ export const authenticate = (user) => {
     setCookie("token", result.data.token);
     Router.push("/");
     dispatch({ type: actionTypes.AUTHENTICATE, payload: result.data.token });
+  };
+};
+
+export const reauthenticate = (token) => {
+  return (dispatch) => {
+    dispatch({ type: actionTypes.AUTHENTICATE, payload: token });
+  };
+};
+
+// removing the token
+export const deauthenticate = () => {
+  return (dispatch) => {
+    console.log("sign out");
+    removeCookie("token");
+    Router.push("/");
+    dispatch({ type: actionTypes.DEAUTHENTICATE });
   };
 };

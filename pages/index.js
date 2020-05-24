@@ -12,7 +12,18 @@ const Index = (props) => {
   return (
     <Layout>
       <div>
-        <div>Prop from Redux {JSON.stringify(props.foo)}</div>
+        {/*<div>Prop from Redux {JSON.stringify(props.foo)}</div>*/}
+        <div>
+          <ul style={{ listStyle: "none" }}>
+            {props.foo.foo.map((user, index) => {
+              return (
+                <li style={{ textDecoration: "none" }} key={index}>
+                  {JSON.stringify(user.title)}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
         <button onClick={handleSubmit}>Load</button>
       </div>
     </Layout>

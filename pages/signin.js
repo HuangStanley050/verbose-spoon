@@ -43,7 +43,7 @@ const Signin = ({ login }) => {
     </Layout>
   );
 };
-Signin.getInitialProps = (ctx) => {};
+//Signin.getInitialProps = (ctx) => {};
 const mapDispatch = (dispatch) => ({
   login: ({ email, password }) => dispatch(authenticate({ email, password })),
 });

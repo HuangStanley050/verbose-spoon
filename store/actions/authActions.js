@@ -1,7 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import { setCookie, removeCookie, getCookie } from "../../util/cookieHelper";
 import Router from "next/router";
-
 import axios from "axios";
 
 export const authenticate = (user) => {
@@ -22,8 +21,13 @@ export const reauthenticate = (token) => {
 
 // removing the token
 export const deauthenticate = () => {
-  return (dispatch) => {
+  return async (dispatch) => {
     console.log("sign out");
+    const token = getCookie("token");
+    let result = await axios.post("http://localhost:8000/logout", {
+      token,
+    });
+    //console.log(result);
     removeCookie("token");
     Router.push("/");
     dispatch({ type: actionTypes.DEAUTHENTICATE });

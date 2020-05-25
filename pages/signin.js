@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Layout from "../components/Layout";
-import { authenticate } from "../store/actions/authActions";
+import {
+  authenticate,
+  checkServerSideCookie,
+} from "../store/actions/authActions";
 
 const Signin = ({ login }) => {
   const [email, setEmail] = useState("test@test.com");
@@ -43,7 +46,9 @@ const Signin = ({ login }) => {
     </Layout>
   );
 };
-//Signin.getInitialProps = (ctx) => {};
+Signin.getInitialProps = (ctx) => {
+  checkServerSideCookie(ctx);
+};
 const mapDispatch = (dispatch) => ({
   login: ({ email, password }) => dispatch(authenticate({ email, password })),
 });

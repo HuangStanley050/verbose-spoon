@@ -15,6 +15,7 @@ export const authenticate = (user) => {
 
 export const reauthenticate = (token) => {
   return (dispatch) => {
+    console.log("you are being reauthenticated");
     dispatch({ type: actionTypes.AUTHENTICATE, payload: token });
   };
 };

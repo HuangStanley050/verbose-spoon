@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import { setCookie, removeCookie } from "../../util/cookieHelper";
+import { setCookie, removeCookie, getCookie } from "../../util/cookieHelper";
 import Router from "next/router";
 
 import axios from "axios";
@@ -28,4 +28,16 @@ export const deauthenticate = () => {
     Router.push("/");
     dispatch({ type: actionTypes.DEAUTHENTICATE });
   };
+};
+
+export const checkServerSideCookie = (ctx) => {
+  if (ctx.req) {
+    if (ctx.req.headers.cookie) {
+      const token = getCookie("token", ctx.req);
+      ctx.store.dispatch(reauthenticate(token));
+      //console.log(token);
+    }
+  } else {
+    return;
+  }
 };

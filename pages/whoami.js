@@ -16,7 +16,7 @@ const Whoami = ({ user }) => (
 );
 
 Whoami.getInitialProps = async (ctx) => {
-  checkServerSideCookie(ctx);
+  //checkServerSideCookie(ctx);
   const token = ctx.store.getState().auth.token;
   if (token) {
     return {

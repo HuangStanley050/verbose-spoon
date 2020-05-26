@@ -40,7 +40,6 @@ export const checkServerSideCookie = (ctx) => {
     if (ctx.req.headers.cookie) {
       const token = getCookie("token", ctx.req);
       ctx.store.dispatch(reauthenticate(token));
-      //console.log(token);
     }
   } else {
     return;

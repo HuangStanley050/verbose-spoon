@@ -40,6 +40,11 @@ export const checkServerSideCookie = (ctx) => {
     if (ctx.req.headers.cookie) {
       const token = getCookie("token", ctx.req);
       ctx.store.dispatch(reauthenticate(token));
+      if (ctx.pathname === "/signin") {
+        console.log("you hit the signin and signup route");
+        console.log("you are already authenticated");
+        ctx.res.redirect("/");
+      }
     }
   } else {
     return;

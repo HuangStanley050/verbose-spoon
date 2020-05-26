@@ -17,10 +17,10 @@ const reducer = (state, action) => {
   }
 };
 
-const makeStore = (context) => {
+const makeStore = ({ foo, auth }) => {
   return createStore(
     reducer,
-    context,
+
     composeWithDevTools(applyMiddleware(thunk))
   );
 };

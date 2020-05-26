@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import App from "next/app";
 //import withRedux from "next-redux-wrapper";
 import { wrapper } from "../store/setupStore";
+import { checkServerSideCookie } from "../store/actions/authActions";
 //import { store, makeStore } from "../store/setupStore";
 
 const MyApp = ({ Component, pageProps, store }) => {
@@ -13,6 +14,7 @@ const MyApp = ({ Component, pageProps, store }) => {
 MyApp.getInitialProps = async ({ Component, ctx }) => {
   // we can dispatch from here too
   //ctx.store.dispatch({ type: "FOO", payload: "foo" });
+  checkServerSideCookie(ctx);
   const pageProps = Component.getInitialProps
     ? await Component.getInitialProps(ctx)
     : {};

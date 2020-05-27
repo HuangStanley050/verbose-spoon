@@ -16,11 +16,11 @@ const Signin = ({ login, isAuth }) => {
     login({ email, password });
     //console.log("login with ", { email, password });
   };
-  // useEffect(() => {
-  //   if (isAuth) {
-  //     Router.push("/");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (isAuth) {
+      Router.push("/");
+    }
+  }, []);
   return (
     <Layout title="Sign In">
       <h3>Sign In</h3>

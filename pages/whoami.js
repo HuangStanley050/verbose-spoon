@@ -17,10 +17,6 @@ const Whoami = ({ user }) => (
 
 Whoami.getInitialProps = async (ctx) => {
   //checkServerSideCookie(ctx);
-  if (ctx.req) {
-    console.log("I am from server side");
-  }
-  console.log("i am from client side");
   const token = ctx.store.getState().auth.token;
   if (token) {
     return {

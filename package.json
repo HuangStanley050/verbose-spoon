@@ -20,7 +20,7 @@
     "js-cookie": "^2.2.1",
     "next": "^9.4.1",
     "next-cookie": "^2.3.0",
-    "next-redux-wrapper": "latest",
+    "next-redux-wrapper": "^6.0.0",
     "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

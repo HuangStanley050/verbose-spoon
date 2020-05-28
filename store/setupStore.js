@@ -1,8 +1,11 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { createWrapper, HYDRATE } from "next-redux-wrapper";
 import { composeWithDevTools } from "redux-devtools-extension";
+import reduxCookiesMiddleware from "redux-cookies-middleware";
+import getStateFromCookies from "redux-cookies-middleware/lib/getStateFromCookies";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers/index";
+import { setCookie } from "../util/cookieHelper";
 
 const reducer = (state, action) => {
   if (action.type === HYDRATE) {
@@ -16,12 +19,24 @@ const reducer = (state, action) => {
     return rootReducer(state, action);
   }
 };
+let initialState = {
+  auth: {
+    token: null,
+  },
+};
 
-const makeStore = ({ foo, auth }) => {
+// state to persist in cookies
+const paths = {
+  "auth.token": { name: "my_app_token" },
+};
+initialState = getStateFromCookies(initialState, paths);
+const makeStore = ({ foo, auth, session }) => {
   return createStore(
     reducer,
-
-    composeWithDevTools(applyMiddleware(thunk))
+    initialState,
+    composeWithDevTools(
+      applyMiddleware(thunk, reduxCookiesMiddleware(paths, { setCookie }))
+    )
   );
 };
 

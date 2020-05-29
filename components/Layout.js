@@ -12,6 +12,11 @@ const Layout = ({ children, title, isAuth, signOut }) => (
             <a>Home</a>
           </Link>
         </li>
+        <li>
+          <Link href="/math">
+            <a>Math</a>
+          </Link>
+        </li>
         {!isAuth && (
           <li>
             <Link href="/signin">

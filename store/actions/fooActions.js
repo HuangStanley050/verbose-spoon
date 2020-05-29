@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
+import { setCookie, getCookie } from "../../util/cookieHelper";
 // export const getPosts = () => (dispatch) =>
 //   axios({
 //     method: "GET",
@@ -22,4 +23,16 @@ export const getPosts = () => {
       console.log(err);
     }
   };
+};
+
+export const add = (counter) => {
+  setCookie("count", counter);
+  console.log(getCookie("count"));
+  return { type: actionTypes.ADD };
+};
+
+export const minus = (counter) => {
+  setCookie("count", counter);
+  console.log(getCookie("count"));
+  return { type: actionTypes.MINUS };
 };

@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
-import { setCookie, getCookie } from "../../util/cookieHelper";
+import { setCookie, getCookie, removeCookie } from "../../util/cookieHelper";
 // export const getPosts = () => (dispatch) =>
 //   axios({
 //     method: "GET",
@@ -25,14 +25,25 @@ export const getPosts = () => {
   };
 };
 
-export const add = (counter) => {
-  setCookie("count", counter);
-  console.log(getCookie("count"));
-  return { type: actionTypes.ADD };
+export const add = () => {
+  return (dispatch, getState) => {
+    dispatch({ type: actionTypes.ADD });
+    setCookie("count", getState().foo.count);
+    console.log(getCookie("count"));
+  };
 };
-
-export const minus = (counter) => {
-  setCookie("count", counter);
-  console.log(getCookie("count"));
-  return { type: actionTypes.MINUS };
+export const reapplyCount = (count) => {
+  //console.log(typeof count);
+  return {
+    type: actionTypes.REAPPLY,
+    payload: count,
+  };
+};
+export const minus = () => {
+  //removeCookie("count");
+  return (dispatch, getState) => {
+    dispatch({ type: actionTypes.MINUS });
+    setCookie("count", getState().foo.count);
+    console.log(getCookie("count"));
+  };
 };
